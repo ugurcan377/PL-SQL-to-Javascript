@@ -24,7 +24,6 @@ def main():
     outf = open(outa,"w")
     text  = inf.readlines()
     for key in equ.keys():
-        check = []
         chh = []
         ch0 = []
         ch = []
@@ -36,13 +35,12 @@ def main():
                 elif (key in ["boolean;","date;","number;"]):
                     tline = line.replace(key,equ[key])
 
-                if ("var"  in tline and tline not in check):
+                if ("var"  in tline and not tline.startwith("var")):
                     temp = tline.split(" ")
                     temp[-1] = temp[-1].rstrip(";\n")
                     temp.reverse()
                     temp[-1] = temp[-1] + ";\n"
                     test = " ".join(temp)
-                    check.append(test)
                     text[text.index(line)] = " ".join(temp)
         elif (key == "do"):
             t1 = 0
